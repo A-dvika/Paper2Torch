@@ -223,6 +223,50 @@ Let's dig deeper into anyone of them, say ResNet50...
    - **Purpose:** Converts the output scores into probabilities for classification tasks.
 
 
+In ResNet architectures, both **Basic Blocks** and **Bottleneck Blocks** are used, each serving a specific purpose to address the challenges of training deep networks. Here’s a detailed comparison between them:
 
+## Basic Block
+![alt text](image-3.png)
+### Structure
+
+- **Convolutional Layers:** Two 3x3 convolutional layers.
+- **Batch Normalization:** Applied after each convolutional layer.
+- **Activation Function:** ReLU (Rectified Linear Unit) applied after each convolution.
+- **Shortcut Connection:** The input is added directly to the output of the block.
+
+
+
+### Characteristics
+
+- **Parameters:** Relatively more parameters due to two 3x3 convolutions.
+- **Computational Complexity:** Higher compared to Bottleneck Blocks, especially in very deep networks.
+- **Depth:** Used in shallower ResNet versions like ResNet-18 and ResNet-34.
+
+### Use Case
+
+Basic Blocks are simpler and are effective for relatively shallower networks. They are straightforward but can become inefficient as the network depth increases due to the higher computational cost.
+
+## Bottleneck Block
+
+### Structure
+
+- **1x1 Convolutional Layer:** Reduces the number of channels (compression layer).
+- **3x3 Convolutional Layer:** Performs the main convolution operation.
+- **1x1 Convolutional Layer:** Expands the number of channels back to a higher dimension.
+- **Batch Normalization:** Applied after each convolutional layer.
+- **Activation Function:** ReLU applied after the 1x1 and 3x3 convolutions.
+- **Shortcut Connection:** The input is added to the output of the block, similar to the Basic Block.
+
+
+
+### Characteristics
+
+- **Parameters:** Fewer parameters compared to Basic Blocks due to the use of 1x1 convolutions.
+- **Computational Complexity:** More efficient, especially for very deep networks.
+- **Depth:** Used in deeper ResNet versions like ResNet-50, ResNet-101, and ResNet-152.
+
+### Use Case
+
+Bottleneck Blocks are designed for deeper networks. They use fewer parameters and computational resources while maintaining the network’s capacity to learn complex representations. This makes them more suitable for very deep ResNet variants.
 
 
