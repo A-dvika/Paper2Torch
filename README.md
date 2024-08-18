@@ -1,2 +1,2 @@
 # Paper2Torch
-This repository contains the PyTorch implementation of the research papers!
+This repository contains the PyTorch implementation of the research papers. The code aims to replicate the experiments and results discussed in the papers, providing a clear and concise implementation for researchers and developers. It includes detailed comments, explanations, and references to the paper’s methodologies, making it easier to understand and extend for further research or practical applications. Contributions and discussions are welcome!
