@@ -71,3 +71,84 @@ A **residual block** is a fundamental building block of ResNets. Here's how it w
 - **Improved Training:** Residual blocks help prevent the vanishing gradient problem and allow very deep networks to be trained more effectively.
 
 
+
+# architecture of ResNet models
+
+![alt text](image-2.png)
+
+This image depicts the architecture of ResNet models of varying depths: 18-layer, 34-layer, 50-layer, 101-layer, and 152-layer.
+
+Let's dig deeper into anyone of them, say ResNet50...
+
+# Architecture of ResNet-50
+
+## Overview
+
+**ResNet-50** is a type of Residual Network (ResNet) that is known for its deep architecture, specifically having 50 layers. It is designed to address issues in training very deep neural networks by using residual learning with shortcut connections.
+
+## Key Components of ResNet-50
+
+1. **Input Layer**
+   - **Size:** 224x224x3 (Height x Width x Channels)
+   - **Purpose:** The input layer receives the raw image data, which is then processed through the network.
+
+2. **Initial Convolution Layer**
+   - **Layer:** Convolutional layer with a kernel size of 7x7
+   - **Stride:** 2
+   - **Purpose:** This layer performs initial feature extraction from the input image.
+
+3. **Max Pooling Layer**
+   - **Kernel Size:** 3x3
+   - **Stride:** 2
+   - **Purpose:** Reduces the spatial dimensions of the feature maps, making the network more computationally efficient.
+
+4. **Residual Blocks**
+
+   ResNet-50 consists of a series of residual blocks, each designed to learn residual mappings. The architecture uses **bottleneck blocks** which are more efficient compared to standard residual blocks.
+
+   - **Bottleneck Block Structure:**
+     1. **1x1 Convolution:** Reduces the number of channels, acting as a compression layer.
+     2. **3x3 Convolution:** Performs the main convolution operation.
+     3. **1x1 Convolution:** Expands the number of channels back to a higher dimension.
+
+   - **Shortcut Connections:** Add the input of the block directly to its output, helping with gradient flow and training.
+
+5. **Residual Block Groups**
+
+   ResNet-50 is divided into four groups of residual blocks:
+
+   - **Group 1:** 
+     - **Layers:** 3 Bottleneck Blocks
+     - **Output Channels:** 256
+     - **Stride:** 1 (for all blocks in this group)
+
+   - **Group 2:**
+     - **Layers:** 4 Bottleneck Blocks
+     - **Output Channels:** 512
+     - **Stride:** 2 (for the first block in this group)
+
+   - **Group 3:**
+     - **Layers:** 6 Bottleneck Blocks
+     - **Output Channels:** 1024
+     - **Stride:** 2 (for the first block in this group)
+
+   - **Group 4:**
+     - **Layers:** 3 Bottleneck Blocks
+     - **Output Channels:** 2048
+     - **Stride:** 2 (for the first block in this group)
+
+6. **Global Average Pooling Layer**
+   - **Purpose:** Reduces each feature map to a single value by averaging over the entire spatial dimensions.
+   - **Output Size:** 1x1x2048
+
+7. **Fully Connected Layer**
+   - **Purpose:** Converts the feature vector to class scores for classification.
+   - **Output Size:** Number of classes (e.g., 1000 for ImageNet classification)
+
+8. **Softmax Activation**
+   - **Purpose:** Converts the output scores into probabilities for classification tasks.
+
+
+
+
+
