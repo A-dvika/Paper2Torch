@@ -70,7 +70,81 @@ A **residual block** is a fundamental building block of ResNets. Here's how it w
 - **Easier Learning:** By learning the residual (or difference) rather than the original function, it becomes easier for the network to learn. If the optimal function is close to an identity mapping (i.e., the output should be similar to the input), it's easier to adjust the residual to be close to zero.
 - **Improved Training:** Residual blocks help prevent the vanishing gradient problem and allow very deep networks to be trained more effectively.
 
+To understand why ResNet (Residual Networks) works effectively, it’s helpful to break down the concept of residual learning and provide a numerical example to illustrate its benefits.
 
+## Why ResNet Works
+
+### Key Concepts
+
+1. **Residual Learning:** Instead of learning the desired mapping \( H(x) \) directly, ResNet learns the residual \( F(x) = H(x) - x \), where \( x \) is the input. The network then learns to predict \( F(x) \) and adds \( x \) back to get the final output: \( H(x) = F(x) + x \).
+
+2. **Shortcut Connections:** These are direct paths that skip one or more layers and add the input to the output of a block. This helps gradients flow through the network more effectively, reducing the vanishing gradient problem and making it easier to train very deep networks.
+
+### Why It Helps
+
+1. **Easier Optimization:** Learning \( F(x) \) (the residual) is often easier than learning \( H(x) \) (the original mapping) directly. If the residual \( F(x) \) is close to zero, the network can easily learn the identity function.
+
+2. **Gradient Flow:** Shortcut connections allow gradients to flow directly through the network, which helps in training deeper networks by mitigating the vanishing gradient problem.
+
+## Numerical Example
+
+Let's use a simplified numerical example to illustrate how residual learning works.
+
+### Example Setup
+
+- **Input (x):** \( [2, 3] \)
+- **Desired Output (H(x)):** \( [5, 6] \)
+
+We want to train a network to approximate \( H(x) \). Instead of learning \( H(x) \) directly, ResNet learns the residual \( F(x) \) where:
+
+\[ F(x) = H(x) - x \]
+
+### Calculate Residual
+
+1. **Compute Residual \( F(x) \):**
+
+   \[
+   F(x) = H(x) - x
+   \]
+
+   \[
+   F(x) = [5, 6] - [2, 3] = [3, 3]
+   \]
+
+2. **Train the Network to Learn \( F(x) \):**
+
+   The network learns to output \( [3, 3] \) given the input \( [2, 3] \).
+
+3. **Add Input \( x \) to Residual \( F(x) \):**
+
+   After training, the network's output is:
+
+   \[
+   H(x) = F(x) + x
+   \]
+
+   \[
+   H(x) = [3, 3] + [2, 3] = [5, 6]
+   \]
+
+### Comparison with Direct Learning
+
+If we were to learn \( H(x) \) directly:
+
+- **Desired Output (H(x)):** \( [5, 6] \)
+- **Learning Task:** The network needs to learn \( [5, 6] \) directly from input \( [2, 3] \).
+
+In a deep network, learning such a mapping can be challenging due to the complexity of the function and potential vanishing gradients.
+
+### Why Residual Learning Is Better
+
+By learning the residual \( [3, 3] \) instead of \( [5, 6] \):
+
+1. **Simpler Task:** Learning \( [3, 3] \) is often simpler than learning \( [5, 6] \) directly.
+2. **Identity Mapping:** If the residual \( F(x) \) were zero, the network would just need to output \( x \), making the learning task even simpler.
+
+
+ResNet works effectively because it transforms the learning problem into a simpler one by focusing on learning residuals rather than direct mappings. This approach helps in training deeper networks by facilitating gradient flow and reducing the difficulty of optimization tasks.
 
 # architecture of ResNet models
 
